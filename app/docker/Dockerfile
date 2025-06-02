@@ -1,4 +1,4 @@
-FROM dustynv/cuda-python:r36.4.0-cu128-24.04
+FROM dustynv/l4t-pytorch:r36.4.0
 
 WORKDIR /usr/src/fastapi_app
 
