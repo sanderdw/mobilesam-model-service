@@ -12,6 +12,7 @@ services:
       - backend
 
   backend:
+    runtime: nvidia
     build:
       context: ./app
       dockerfile: docker/Dockerfile
