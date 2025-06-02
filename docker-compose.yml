@@ -7,7 +7,7 @@ services:
       - "8501:8501"
     command: streamlit run app.py --server.port 8501 --server.address 0.0.0.0
     environment:
-      - API_URL=http://backend:8000/api
+      - API_URL=http://backend:8005/api
     depends_on:
       - backend
 
@@ -16,8 +16,16 @@ services:
       context: ./app
       dockerfile: docker/Dockerfile
     ports:
-      - "8000:8000"
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+      - "8005:8005"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8005
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+    deploy:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: 1
+            capabilities: [gpu]
 
 networks:
   default:
