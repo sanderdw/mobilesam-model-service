@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
 
+import torch
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -14,6 +16,8 @@ async def lifespan(app: FastAPI):
     """
     try:
         # Startup: Initialize and set up resources
+        print('Checking with torch.cuda.is_available()')
+        print(torch.cuda.is_available())
         mask_generator, _ = initialize_mobile_sam()
         app.state.sam = {}
         app.state.sam["mask_generator"] = mask_generator
