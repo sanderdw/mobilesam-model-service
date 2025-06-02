@@ -13,12 +13,9 @@ services:
 
   backend:
     runtime: nvidia
-    build:
-      context: ./app
-      dockerfile: docker/Dockerfile
+    image: sanderdw/my-sam
     ports:
       - "8005:8005"
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8005
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
 
