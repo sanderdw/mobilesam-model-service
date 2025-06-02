@@ -4,7 +4,7 @@ WORKDIR /usr/src/fastapi_app
 
 COPY ../requirements.txt .
 
-RUN pip3 install --no-cache-dir -r app/requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY .. ./app
 
